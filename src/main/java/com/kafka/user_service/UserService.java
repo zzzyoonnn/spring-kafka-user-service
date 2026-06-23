@@ -15,7 +15,13 @@ public class UserService {
     this.kafkaTemplate = kafkaTemplate;
   }
 
-  public void signUp(SignUpRequestDto requestDto) {
+  public void signUp(SignUpRequestDto signUpRequestDto) {
+    User user = new User(
+            signUpRequestDto.getEmail(),
+            signUpRequestDto.getName(),
+            signUpRequestDto.getPassword()
+    );
 
+    userRepository.save(user);
   }
 }
